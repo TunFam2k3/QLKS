@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+form{
+	background-color: aliceblue
+}
+.form-control col-sm{
+	padding: 6px 12px;
+	border: 0.8px;
+	width: 100px;
+}
+
