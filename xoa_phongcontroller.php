@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['selected_ids'])) {
     $db = "anh";
-    $conn = new mysqli("localhost", "root", "", $db) or die("Không connect được với máy chủ");
+    $conn = new mysqli("localhost", "root", "Tunfam8303@", $db) or die("Không connect được với máy chủ");
         if(isset($_POST['action'])){
 
     $selected_ids = explode(',', $_POST['selected_ids']);

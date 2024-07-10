@@ -5,7 +5,7 @@ $full_name = $_POST['full_name'];
 $email = $_POST['email'];
 $db = "anh";
 
-$conn = new mysqli("localhost", "root", "", $db) or die("Không connect được với máy chủ");
+$conn = new mysqli("localhost", "root", "Tunfam8303@", $db) or die("Không connect được với máy chủ");
 
 $username_check = $username;
 $email_check = $email;

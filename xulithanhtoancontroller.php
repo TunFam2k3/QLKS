@@ -1,6 +1,6 @@
 <?php
 $db = "anh";
-$conn = new mysqli("localhost", "root", "", $db) or die ("Không connect được với máy chủ");
+$conn = new mysqli("localhost", "root", "Tunfam8303@", $db) or die ("Không connect được với máy chủ");
 
 $id_giaodich = $_GET['id'];
 $id_phong = $_GET['id_phong'];
