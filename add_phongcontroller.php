@@ -22,7 +22,7 @@
 	
 		
 		$db="anh";
-		$conn=new mysqli("localhost","root","",$db) or die ("Không connect đc với máy chủ");
+		$conn=new mysqli("localhost","root","Tunfam8303@",$db) or die ("Không connect đc với máy chủ");
 		if (!empty($price) && !empty($description)) {
 	
 			$sql_add="INSERT INTO `anhhh` ( `loaiphong`,`price`,`description`, `anhphong`,`tinhtrang`,`diadiem`) VALUES ('$loaiphong','$price','$description','$file__name','$tinhtrang','$diadiem')";

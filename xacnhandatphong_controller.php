@@ -4,7 +4,7 @@ session_start();
 
 $host = "localhost";
 $username = "root";
-$password = "";
+$password = "Tunfam8303@";
 $database = "anh";
 
 $conn = new mysqli($host, $username, $password, $database) or die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);

@@ -3,7 +3,7 @@ if (isset($_POST['selected_ids'])) {
     $selected_ids = $_POST['selected_ids'];
 
     $db = "anh";
-    $conn = new mysqli("localhost", "root", "", $db) or die("Không connect được với máy chủ");
+    $conn = new mysqli("localhost", "root", "Tunfam8303@", $db) or die("Không connect được với máy chủ");
 
     foreach ($selected_ids as $user_id) {
        

@@ -2,7 +2,7 @@
 	session_name('admin');
 	session_start();
 	$db = "anh";
-	$conn = new mysqli("localhost", "root", "", $db) or die("Không connect được với máy chủ");
+	$conn = new mysqli("localhost", "root", "Tunfam8303@", $db) or die("Không connect được với máy chủ");
 	$_SESSION['role'] = ""; 
 	$username = mysqli_real_escape_string($conn, $_POST['username']);//Hàm mysqli_real_escape_string được sử dụng để làm sạch và thoát ra khỏi chuỗi các ký tự đặc biệt có thể gây ra lỗ hổng bảo mật khi chúng được sử dụng
 	$password = mysqli_real_escape_string($conn, $_POST['password']);
