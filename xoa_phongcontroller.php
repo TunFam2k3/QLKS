@@ -1,23 +1,10 @@
 <?php
-if (isset($_POST['selected_ids'])) {
-    $db = "anh";
-    $conn = new mysqli("localhost", "root", "Tunfam8303@", $db) or die("Không connect được với máy chủ");
-        if(isset($_POST['action'])){
-
-    $selected_ids = explode(',', $_POST['selected_ids']);
-    
-			foreach ($selected_ids as $id_phong) {
-		   $update_query = "DELETE FROM anhhh WHERE id_phong = $id_phong";
-			if ($conn->query($update_query) !== TRUE) {
-				echo "Lỗi cập nhật quyền: " . $conn->error;
-			} else {
-				echo "Đã xóa phòng có ID $id_phong";
-			}
-		}
-	}
-    $conn->close();
+	$id=$_REQUEST["id_phong"];
+	$conn=mysqli_connect("localhost","root","") or die ("Không connect đc với máy chủ");
+	mysqli_select_db($conn,"anh") or die ("Không tìm thấy CSDL");
+	$sql1="DELETE FROM `anhhh` WHERE `anhhh`.`id_phong`='$id'";
+	mysqli_query($conn,$sql1);
     header('Location: indexadmin.php?danhmuc=danhsachphong');
-} else {
-    echo "Không có dữ liệu được gửi từ form.";
-}
+
 ?>
+

@@ -1,3 +1,7 @@
+<?php
+session_name('admin');
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,6 +103,14 @@
         .container a:hover {
             text-decoration: underline;
         }
+        .error-container {
+            margin-bottom: 15px;
+			color: red;
+            font-weight: 550;
+			font-style:italic;
+			font-size:13px;
+			
+        }
     </style>
 </head>
 <body>
@@ -113,6 +125,13 @@
                 <input type="password" id="password" name="password" required>
                 <label for="password">Mật khẩu</label>
             </div>
+            <?php
+                if (isset($_SESSION['login_error'])) {
+                    echo '<div class="error-container">' . $_SESSION['login_error'] . '</div>';
+                    // Xóa giá trị trong $_SESSION để không hiển thị lại lần sau
+                    unset($_SESSION['login_error']);
+                }
+                ?>
             <input type="submit" value="Đăng nhập">
         </form>
         <p style="color: black">Chưa có tài khoản? <a href="dangky.php">Đăng ký ngay</a></p>

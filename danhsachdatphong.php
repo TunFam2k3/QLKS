@@ -10,19 +10,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    font-size: 14px;
+    /* font-size: 14px; */
 }
-
+/* 
 h1 {
     color: #fff;
     font-size: 36px;
     text-shadow: 2px 2px 4px rgba(254, 150, 150, 0.5);
     text-align: center;
     margin-top: 20px;
-}
+} */
 
 table {
-    width: 80%;
+    width: 80%
     margin: 20px auto;
     border-collapse: collapse;
     background-color: rgba(255, 255, 255, 0.9);
@@ -74,7 +74,7 @@ a[href="addphong.php"] button:hover {
     background: linear-gradient(135deg, #FF7044, #FF5733);
 }
 
-ul {
+/* ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
@@ -92,7 +92,7 @@ ul {
 
 i {
     color: black;
-}
+} */
 
 
 button[type="submit"] {
@@ -135,7 +135,32 @@ button[type="submit"]:hover{
     border-radius: 24px;
     font-size: 16px;
     border: 1px solid rgba(208, 205, 205, 1.00);
+}/* Styles for action links */
+.action-links {
+    margin-top: 10px; /* Add top margin for spacing */
 }
+
+.confirm-link,
+.cancel-link,
+.checkout-link {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin-right: 10px; /* Add some spacing between links */
+}
+
+.confirm-link:hover,
+.cancel-link:hover,
+.checkout-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Styles for the "Đã trả phòng" status */
+.paid-status {
+    color: #28a745; /* Green color for the paid status */
+    font-weight: bold; /* Make it bold */
+}
+
+
 
 
 </style>
@@ -154,7 +179,7 @@ button[type="submit"]:hover{
         $searchValue = $_POST['searchValue'];
     }
 
-    $select = "SELECT * FROM `datphong` WHERE `tenkhach` LIKE '%$searchValue%' LIMIT $offset, $sobg";
+    $select = "SELECT * FROM `datphong` WHERE `tenkhach` LIKE '%$searchValue%' ORDER BY `ngaydat` ASC LIMIT $offset, $sobg";
     $result = mysqli_query($conn, $select);
     $stt_hang = ($current_page - 1) * $sobg;
 
@@ -162,11 +187,12 @@ button[type="submit"]:hover{
         $stt_hang++;
         $id_tk[$stt_hang] = $row->id;
         $id_phong[$stt_hang] = $row->id_phong;
-        $username[$stt_hang] = $row->username;
+        // $username[$stt_hang] = $row->username;
         $tenkhach[$stt_hang] = $row->tenkhach;
         $ngayden[$stt_hang] = $row->ngayden;
         $ngaydi[$stt_hang] = $row->ngaydi;
         $diadiem[$stt_hang] = $row->diadiem;
+		$trangthaithanhtoan[$stt_hang]=$row->trangthaithanhtoan;
     }
 
     $tong_bg = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `datphong` WHERE `tenkhach` LIKE '%$searchValue%'"));
@@ -182,12 +208,11 @@ button[type="submit"]:hover{
 <table align="center">
     <tbody>
         <tr>
-            <td colspan="8" align="center"><h3>Danh sách lịch sử đặt phòng</h3></td>
+            <td colspan="8" align="center"><h3>Danh sách phòng mới đặt </h3></td>
         </tr>
         <tr align="center">
             <th>STT</th>
             <th>ID phòng</th>
-            <th>Username</th>
             <th>Tên khách</th>
             <th>Ngày đến</th>
             <th>Ngày đi</th>
@@ -203,20 +228,30 @@ button[type="submit"]:hover{
         <tr>
             <td><?php echo $i; ?></td>
             <td><?php echo $id_phong[$i]; ?></td>
-            <td><?php echo $username[$i]; ?></td>
             <td><?php echo $tenkhach[$i]; ?></td>
             <td><?php echo $ngayden[$i]; ?></td>
             <td><?php echo $ngaydi[$i]; ?></td>
             <td><?php echo $diadiem[$i]; ?></td>
-            <td>
-                <a href="xoa_taikhoan_controller.php?id=<?php echo $id_phong[$i]; ?>"><i class="fa-solid fa-trash"></i></a>
-            </td>
+			<td class="button-cell">
+            
+            <?php if ($trangthaithanhtoan[$i] == "choxacnhan") : ?>
+                <div class="action-links">
+                    <a class="confirm-link" href="xacnhandatphong_admincontroller.php?iddp=<?php echo $id_tk[$i]; ?>&action=hanhdong1">Xác nhận</a>/
+                    <a class="cancel-link" href="xacnhandatphong_admincontroller.php?iddp=<?php echo $id_tk[$i]; ?>&action=hanhdong2">Hủy</a>
+                </div>
+            <?php elseif ($trangthaithanhtoan[$i] == "chuathanhtoan") : ?>
+                <a class="checkout-link" href="traphong.php?id=<?php echo  $id_tk[$i]; ?>">Trả phòng</a>
+            <?php elseif ($trangthaithanhtoan[$i] == "dathanhtoan") : ?>
+                <p class="paid-status">Đã trả phòng</p>
+            <?php endif; ?>
+        </td>
+            
         </tr>
         <?php
             }
         ?>
         <tr>
-            <td colspan="8" align="right">Có tổng số <?php echo $tong_bg; ?> tài khoản</td>
+            <td colspan="8" align="right">Có tổng số <?php echo $tong_bg; ?> đơn đặt phòng</td>
         </tr>
     </tbody>
 </table>

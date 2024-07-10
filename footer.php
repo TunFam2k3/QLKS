@@ -79,10 +79,10 @@
 			<div class="footchild">
 				<strong class="tieude">Về CHTravel</strong>
 				<a href=""><strong>Cách đặt chỗ</strong></a>
-				<a href=""><strong>Liên hệ chúng tôi</strong></a>
+				<a href="lienhe.php"><strong>Liên hệ chúng tôi</strong></a>
 				<a href=""><strong>Trợ giúp</strong></a>
 				<a href=""><strong>Tuyển dụng</strong></a>
-				<a href=""><strong>Về chúng tôi</strong></a>
+				<a href="gioithieu.php"><strong>Về chúng tôi</strong></a>
 				<br>
 				<strong class="tieude">Theo dõi chúng tôi trên</strong>
 				<a href=""><i class="fa-brands fa-facebook"></i>Facebook</a>

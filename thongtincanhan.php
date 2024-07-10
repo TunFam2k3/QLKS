@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin cá nhân</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,8 +14,8 @@
         }
 
         .container1 {
-            margin: 0 auto;
-			max-width: 600px;
+            margin: 50px auto;
+            max-width: 600px;
             padding: 20px;
             background-color: #ffffff;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -25,12 +27,9 @@
             color: #007BFF;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+       
 
         label {
-            display: block;
             font-weight: bold;
             color: #333;
         }
@@ -41,12 +40,13 @@
         input[type="date"],
         textarea,
         select {
-            width: 90%;
+            width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
             color: #333;
+            margin-top: 5px; /* Add a small margin at the top */
         }
 
         button {
@@ -77,31 +77,35 @@
         <form action="xuliluuthongtinnguodung.php" method="POST">
             <div class="form-group">
                 <label for="name">Họ và Tên:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" class="form-control" required>
             </div>
-			<div class="form-group">
-                <label for="name">Ngày sinh:</label>
-                <input type="date" id="ngaysinh" name="ngaysinh" required>
+            <div class="form-group">
+                <label for="ngaysinh">Ngày sinh:</label>
+                <input type="date" id="ngaysinh" name="ngaysinh" class="form-control" required>
             </div>
-            
             <div class="form-group">
                 <label for="phone">Số Điện Thoại:</label>
-                <input type="tel" id="phone" name="phone" required>
+                <input type="tel" id="phone" name="phone" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="address">Địa Chỉ:</label>
-                <textarea id="address" name="address" rows="4" required></textarea>
+                <textarea id="address" name="address" rows="4" class="form-control" required></textarea>
             </div>
             <div class="form-group">
                 <label for="gender">Giới Tính:</label>
-                <select id="gender" name="gender" required>
+                <select id="gender" name="gender" class="form-control" required>
                     <option value="Nam">Nam</option>
                     <option value="Nữ">Nữ</option>
                     <option value="other">Khác</option>
                 </select>
             </div>
-            <button type="submit">Lưu</button>
+            <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

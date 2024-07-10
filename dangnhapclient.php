@@ -1,3 +1,6 @@
+<?php
+session_name('client');
+session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,9 +143,20 @@
 			font-weight: 600;
 
 		}
+		.error-container {
+            margin-bottom: 15px;
+			color: red;
+            font-weight: 550;
+			font-style:italic;
+			font-size:13px;
+			
+        }
+
+       
 	</style>
 </head>
 <body>
+
 	<form action="dangnhap_controller.php" method="post">
 		<div class="nav">
 		<div class="mainlogin"> 
@@ -161,6 +175,13 @@
         <input type="password" name="password" required>
         <label for="password">Mật khẩu</label>
     </div>
+	<?php
+    if (isset($_SESSION['login_error'])) {
+        echo '<div class="error-container">' . $_SESSION['login_error'] . '</div>';
+        // Xóa giá trị trong $_SESSION để không hiển thị lại lần sau
+        unset($_SESSION['login_error']);
+    }
+    ?>
     <input type="submit" value="Đăng nhập">
     <br>
     <a href="dangky.php">Đăng ký</a>
@@ -175,6 +196,8 @@
 			</div>
 		</div>
 	</div>
+	
 	</form>
+	
 </body>
 </html>

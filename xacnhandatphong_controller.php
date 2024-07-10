@@ -4,7 +4,7 @@ session_start();
 
 $host = "localhost";
 $username = "root";
-$password = "Tunfam8303@";
+$password = "";
 $database = "anh";
 
 $conn = new mysqli($host, $username, $password, $database) or die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
@@ -16,7 +16,7 @@ $ngaydi = $_POST["ngaydi"];
 $soluong = $_POST["soluongnguoi"];
 $diadiem=$_GET['diadiem'];
 $username = $_SESSION['userclient'];
-$tinhtrangthanhtoan='chuathanhtoan';
+$tinhtrangthanhtoan='choxacnhan';
 $pricetempt = $_GET["price"];
 $ngaydentinh = new DateTime($ngayden);
 $ngayditinh = new DateTime($ngaydi);
@@ -29,7 +29,7 @@ if($soNgay==0){
 }
 $price=$soNgay*$pricetempt;
 try {
-    $check_phong = "SELECT * FROM anhhh WHERE id = '$phongId' AND tinhtrang = 'Còn trống'";
+    $check_phong = "SELECT * FROM anhhh WHERE id_phong = '$phongId' AND tinhtrang = 'Còn trống'";
     $result = $conn->query($check_phong);
     $sql_insert_datphong = "INSERT INTO `datphong`(`id_phong`, `username`, `tenkhach`,`ngaydat`, `ngayden`, `ngaydi`, `soluongnguoi`, `diadiem`, `price`, `loaiphong`, `trangthaithanhtoan`) VALUES ('$phongId','$username', '$tenkhach', '$ngayhientai','$ngayden', '$ngaydi','$soluong','$diadiem','$price','$loaiphong','$tinhtrangthanhtoan')";
 	$updateQuery = "UPDATE acc SET `trangthai` = '<span style=\"color: #00CD00;\">Đang giao dịch</span>' 
