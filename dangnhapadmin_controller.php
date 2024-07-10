@@ -1,23 +1,49 @@
 <?php
-	session_name('admin');
-	session_start();
-	$db = "anh";
-	$conn = new mysqli("localhost", "root", "Tunfam8303@", $db) or die("Không connect được với máy chủ");
-	$_SESSION['role'] = ""; 
-	$username = mysqli_real_escape_string($conn, $_POST['username']);//Hàm mysqli_real_escape_string được sử dụng để làm sạch và thoát ra khỏi chuỗi các ký tự đặc biệt có thể gây ra lỗ hổng bảo mật khi chúng được sử dụng
-	$password = mysqli_real_escape_string($conn, $_POST['password']);
-	
-	$select = "SELECT * FROM `acc` WHERE (`username` = '$username' AND `password` = '$password') AND (`role` = 'Admin' OR `role` = 'Quản trị viên')";
-	$result = mysqli_query($conn, $select);
+session_name('admin');
+session_start();
 
-	if (mysqli_num_rows($result) > 0) {
-		$row = mysqli_fetch_assoc($result);
-		$_SESSION['useradmin'] = $username;
-		$_SESSION['role'] = $row['role'];
+$db = "anh";
+$conn = new mysqli("localhost", "root", "", $db);
 
-		header('Location: indexadmin.php');
-	} else {
-		header('Location: indexadmin.php');
-	}
-	mysqli_close($conn);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$_SESSION['role'] = "";
+
+$username = $conn->real_escape_string($_POST['username']);
+$password = $conn->real_escape_string($_POST['password']);
+
+$select = "SELECT * FROM `acc` WHERE (`username` = ? AND `password` = ?) AND (`role` = 'Admin' OR `role` = 'Quản trị viên')";
+$stmt = $conn->prepare($select);
+$stmt->bind_param("ss", $username, $password);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+if ($row['trangthai'] == 'Đã khóa') {
+    $_SESSION['login_error'] = "*Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên.";
+    header('Location: dangnhapadmin.php');
+    exit(); 
+}
+if ($result->num_rows > 0) {
+    if ($row['trangthai'] == 'Chưa kích hoạt') {
+        $updateStatus = "UPDATE `acc` SET `trangthai` ='Đang hoạt động'  WHERE `username` = ?";
+        $stmt = $conn->prepare($updateStatus);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+
+    }
+	$_SESSION['useradmin'] = $username;
+	$_SESSION['role'] = $row['role'];
+	header('Location: indexadmin.php');
+	exit();
+} else {
+    $_SESSION['login_error'] = "*Sai tên đăng nhập hoặc mật khẩu. Vui lòng nhập lại.";
+
+    header('Location: dangnhapadmin.php');
+    exit();
+}
+
+$stmt->close();
+$conn->close();
 ?>

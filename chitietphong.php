@@ -152,7 +152,7 @@ session_start();
     <div class="room-container">
         <div class="room-details">
 			
-            <h2>Chi tiết phòng</h2>
+            <h2> Thông tin chi tiết phòng </h2>
             <div class="image-slider">
 				<img src="images/<?php echo $anh; ?>" alt="Ảnh 1" id="sliderImage">
     		</div>

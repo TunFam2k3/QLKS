@@ -1,7 +1,7 @@
 <?php
 	$inputsearch = $_POST['search'];
 	$db = 'anh';
-	$conn = new mysqli('localhost', 'root', 'Tunfam8303@', $db) or die('Không kết nối được với máy chủ');
+	$conn = new mysqli('localhost', 'root', '', $db) or die('Không kết nối được với máy chủ');
 
 	$sql_query = "SELECT * FROM acc WHERE `username` LIKE '%$inputsearch%' OR `full_name` LIKE '%$inputsearch%' OR `email` LIKE '%$inputsearch%' OR `trangthai` LIKE '%$inputsearch%' OR `role` LIKE '%$inputsearch%'";
 

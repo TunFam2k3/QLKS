@@ -14,12 +14,26 @@
 			$row=mysqli_fetch_object($result_se_hang);
 				$id_hang0=$row->id_phong;
 				$price=$row->price;
+                $loaiphong=$row->loaiphong;
 				$description=$row->description;
 				$tinhtrang=$row->tinhtrang;
 				$diadiem=$row->diadiem;
+                $anhphong=$row->anhphong;
 				
 
-	?>
+
+                $query_loaiphong="SELECT * FROM `loai_phong`";
+				$result=$conn->query($query_loaiphong);
+				$stt_hang_loaiphong=0;
+				while($row = mysqli_fetch_object($result))// trả về kết quả theo dòng
+				{
+				$stt_hang_loaiphong++;
+				$id_loai_phong[$stt_hang_loaiphong]=$row->id;
+				$loai_phong[$stt_hang_loaiphong]=$row->loaiphong;
+				}
+					$tong_bg_loaiphong = mysqli_num_rows(mysqli_query($conn, $query_loaiphong));// trả về số lượng bản ghi
+        ?>
+	
 <style>
         /* Form styling */
         body {
@@ -83,6 +97,40 @@
         <form action="sua_phongcontroller.php?id_phong=<?php echo $id_hang0?>" method="POST" enctype="multipart/form-data">
             <table>
                 <tr>
+                    <td>Ảnh</td>
+                    <td> <img src="images/<?php echo $anhphong?>" height="180pxpx" width="300px" alt="Anh phong" ></td>
+                    
+                    
+                   
+                </tr>
+                <tr>
+                    <td>Chọn ảnh  mới</td>
+                    <td><input type="file"  name="anhphongmoi" required></td>
+                   
+                </tr>
+                <tr>
+                    <td>Loại phòng</td>
+                    <td>
+                    <select name="loai_phong1" id="" >
+				<option value="<?php echo $loaiphong?>"><?php echo $loaiphong?></option>
+                <?php
+				for($i=1;$i<=$tong_bg_loaiphong;$i++){
+                    if(strcmp($loai_phong[$i],$loaiphong)!=0){
+					
+				?>
+				<option value="<?php echo $loai_phong[$i]?>"><?php echo $loai_phong[$i]?></option>
+				
+                <?php
+                       
+                    }
+                    }
+				
+				?>
+				
+			</select>
+                    </td>
+                </tr>
+                <tr>
                     <td>Giá</td>
                     <td><input type="number" name="price" value="<?php echo $price?>"  ></td>
                 </tr>
@@ -91,10 +139,7 @@
                     <td><textarea name="description" id="description"><?php echo $description?></textarea> </td>
                 </tr>
                 
-				<tr>
-                    <td>Ảnh</td>
-                    <td><input type="file" name="anhphongmoi" ></td>
-                </tr>
+				
 				<tr>
                     <td>Tình trạng</td>
                     <td><input type="text" name="tinhtrang"  value="<?php echo $tinhtrang?>" ></td>
@@ -128,9 +173,26 @@
 				</tr>
                 
                 <tr>
+                    
+      <script type="text/javascript">
+
+function testConfirmDialog()  {
+
+     var result = confirm("Bạn có chắc chắn sửa?");
+
+     if(result)  {
+        alert("Sửa thành công");
+        return true;
+     } else {
+        return false;
+     }
+}
+
+</script>
                     <td></td>
-                    <td><input type="submit" value="Lưu Thay Đổi"></td>
+                    <td><button onclick ="testConfirmDialog() "> Lưu thay đổi</td>
                 </tr>
+
             </table>
         </form>
     </div>

@@ -1,7 +1,7 @@
 <?php
 	$inputsearch = $_POST['search'];
 	$db = 'anh';
-	$conn = new mysqli('localhost', 'root', 'Tunfam8303@', $db) or die('Không kết nối được với máy chủ');
+	$conn = new mysqli('localhost', 'root', '', $db) or die('Không kết nối được với máy chủ');
 
 	$sql_query = "SELECT * FROM anhhh WHERE `price` LIKE '%$inputsearch%' OR `description` LIKE '%$inputsearch%' OR `tinhtrang` LIKE '%$inputsearch%' ";
 

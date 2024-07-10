@@ -10,16 +10,13 @@
 			if ($temp == 'lsdp') {
 				include('lichsudatphong.php');
 			}
-			else if ($temp == 'lsdvcd') {
-				include('./veDaDat.php');
-			}else if ($temp == 'lsdvdulich') {
-				include('./Giohangtour.php');
-			}else if ($temp == 'lsdvdiadiem') {
-				include('./Giohangdiadiem.php');
-			} else if ($temp == 'ttcn') {
+			 else if ($temp == 'ttcn') {
 				include('./thongtincanhan.php');
 			} else if ($temp == 'doimatkhau') {
 				include('./quenmatkhau_form.php');
+			}
+			else if ($temp == 'lsddv') {
+				include('./lichsudatdichvu.php');
 			}
 			else{
 				include('./thongtincanhan.php');

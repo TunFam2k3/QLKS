@@ -75,6 +75,10 @@
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required placeholder="Email">
             </div>
+            <div class="form-group">
+                <label for="cccd">CCCD:</label>
+                <input type="text" id="cccd" name="cccd" required placeholder="CCCD">
+            </div>
             
             <div class="form-group">
                 <input type="submit" value="Đăng Ký">

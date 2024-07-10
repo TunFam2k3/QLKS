@@ -1,24 +1,17 @@
-	<?php include './header.php';
 
-
-if (!isset($_SESSION['userclient'])) {
-    header('Location: dangnhapclient.php');
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phòng Khách Sạn</title>
-	<link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
     <style>
 		
         body {
@@ -29,7 +22,7 @@ if (!isset($_SESSION['userclient'])) {
 			
         }
 
-        .container {
+        .containerb {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
@@ -42,7 +35,7 @@ if (!isset($_SESSION['userclient'])) {
 			margin-bottom: 20px;
 			margin-top: 20px;
         }
-		.container img{
+		.containerb img{
 			border-radius: 10px 10px 0 0;
 
 		}
@@ -101,15 +94,9 @@ if (!isset($_SESSION['userclient'])) {
         .room-button button:hover {
             background-color: #e74c3c;
         }
-		.slide{
-			height: 300px;
-			display: flex;
-		}
-		.carousel-item{
-			height: 300px;
-			background-size: contain;
-		}
-		.container-fluid{
+
+		
+		.container-fluidb{
 			margin: 0;
 			padding: 0;
 			z-index: -2;
@@ -139,9 +126,24 @@ if (!isset($_SESSION['userclient'])) {
 		}
     </style>
 </head>
+<?php 
+
+include './header.php';
+if (!isset($_SESSION['userclient'])) {
+    header('Location: dangnhapclient.php');
+    exit;
+}
+
+	include 'chat.php';
 	
+?>
 <body>
 	
+
+
+
+
+
 <?php	
 		$db="anh";
 		$conn=new mysqli("localhost","root","",$db) or die ("Không connect đc với máy chủ");
@@ -162,7 +164,7 @@ if (!isset($_SESSION['userclient'])) {
 		}
 				$result = mysqli_query($conn, $selectdon);
 				$stt_hang=0;
-			while($row = mysqli_fetch_object($result))
+				while($row = mysqli_fetch_object($result))
 			{
 			
 			$stt_hang++;
@@ -235,61 +237,78 @@ if (!isset($_SESSION['userclient'])) {
 	
 	
 	
-	
-	
-	<div class="container-fluid head" style="display: flex;">
+	<div class="container-fluid " style="padding-top:80px;">
 		
-		<div id="demo"  style="margin-top: 150px;width:100%;
+		<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+				<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+			<?php
+			  for ($i = 2; $i <= $tong_bg ; $i++)
+			  {
+			?>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="<?php echo $i-1?>"></button>
+                <?php }?>
+            </div>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+				<div class="carousel-item active">
+                    <img src="images/<?php echo $anhphong[1]?>"
+                        alt="slide 0" class="d-block w-100 h-100">	
+                </div>
+			<?php
+			  for ($i = 2; $i <=$tong_bg ; $i++)
+			  {
+			?>
+                <div class="carousel-item ">
+				<img src="images/<?php echo $anhphong[$i]?>"
+                        alt="slide <?php echo $i-1?>" class="d-block w-100 h-100">
+                </div>
+				<?php }?>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" style="margin-top:100px;"  type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" style="margin-top:100px;" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+	</div>
+	
+	<div class="container-fluidb head" style="display: flex;">
+		
+		<div id="demo"  style="margin-top: 30px;width:100%;
 		height:50px;">
            
         </div>
 	</div>
-	<div class="container">
-		<a href="#phongdon"><button>Phòng đơn</button></a>
-		<a href="#phongdoi"><button>Phòng đôi</button></a>
-		<a href="#phonggiadinh"><button>Phòng gia đình</button></a>
-		<a href="#phongsuite"><button>Phòng Suite</button></a>
+	<div class="containerb">
+		<a href="#phongdon"><button style="background-color: #3498db;" class="btn btn-info ">Phòng đơn</button></a>
+		<a href="#phongdoi"><button style="background-color: #3498db;" class="btn btn-info ">Phòng đôi</button></a>
+		<a href="#phonggiadinh"><button style="background-color: #3498db;" class="btn btn-info ">Phòng gia đình</button></a>
+		<a href="#phongsuite"><button style="background-color: #3498db;" class="btn btn-info ">Phòng Suite</button></a>
 	</div>
-	<div class="container">
+	<div class="containerb">
 		<h2 id="phongdon">Danh sách phòng đơn</h2>
-		<form method="POST"> 
-			<label for="diadiem" style="font-weight: bold;">Chọn địa điểm:</label>
-			<select id="diadiem" name="diadiem" style="padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
-				<option value="all">Tất cả địa điểm</option>
-				<?php
-					$tinhThanhList = array(
-					"Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Hải Phòng", "Bà Rịa - Vũng Tàu",
-					"An Giang", "Bạc Liêu", "Bắc Kạn", "Bắc Giang", "Bắc Ninh",
-					"Bến Tre", "Bình Dương", "Bình Định", "Bình Phước", "Bình Thuận",
-					"Cà Mau", "Cao Bằng", "Cần Thơ", "Đắk Lắk", "Đắk Nông",
-					"Điện Biên", "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang",
-					"Hà Nam", "Hà Tĩnh", "Hải Dương", "Hậu Giang", "Hưng Yên",
-					"Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng",
-					"Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An",
-					"Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình",
-					"Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng",
-					"Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa",
-					"Thừa Thiên Huế", "Tiền Giang", "Trà Vinh", "Tuyên Quang", "Vĩnh Long",
-					"Vĩnh Phúc", "Yên Bái"
-				);
-
-				foreach ($tinhThanhList as $tinhThanh) {
-					echo '<option value="' . $tinhThanh . '">' . $tinhThanh . '</option>';
-				}
-    			?>
-			</select>
+		<form class="form-label " method="POST"> 
+			
 			<input type="search" name ="timtheophong" placeholder="Timloaiphong">
 
 			<input type="submit" value="Lọc" style="background-color: #3498db; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; font-size: 16px; cursor: pointer;">
 		</form>
 	<?php
+	if(isset($inputtimkiem)){
 		$inputtimkiem=$_POST['timtheophong'];
-		$select="select"
+		$select="select";}
 	?>
 
 
 	</div>
-    <div class="container">
+    <div class="containerb">
 		 <?php
 			  for ($i = 1; $i <= $tong_bg ; $i++)
 			  {
@@ -298,11 +317,9 @@ if (!isset($_SESSION['userclient'])) {
         <div class="room"  >
            <img src="images/<?php echo $anhphong[$i]?>" style="height: 200px;" alt="Anh phong" >
             <div class="room-description">
-                 <h2>Mô tả phòng <?php echo $i ?></h2>
+                 <h2>Phòng số: <?php echo $i ?></h2>
 					
-						<p ><?php echo substr($description0[$i], 0, 100) . '...'; ?></p><!--Hiênr thị 200 chữ đầu tiên--><br>
-						<a href="chitietphong.php?id_phong=<?php echo $id_hang[$i]; ?>" >Đọc thêm</a>
-
+						
 				
 					<p><?php echo $price0[$i] ?></p>
 					<p><strong><?php echo $diadiem[$i] ?></strong></p>
@@ -319,7 +336,9 @@ if (!isset($_SESSION['userclient'])) {
 							if ($tinhtrang[$i] == "Đã đặt") {
 								echo '<button onclick="alert(\'Phòng này đã được đặt. Vui lòng chọn phòng khác.\')">Đặt phòng</button>';
 							} else {
-								echo '<a href="chitietphong.php?id_phong=' . $id_hang[$i] . '"><button>Đặt phòng</button></a>';
+								?> 
+								<button data-bs-toggle="modal" data-bs-target="#modal<?php echo $i?>">Đặt phòng</button>
+								<?php
 							}
 							?>
 						</div>
@@ -328,10 +347,33 @@ if (!isset($_SESSION['userclient'])) {
 				  }
 				  ?>
 		</div>
-	<div class="container">
+		<?php for($i=1;$i<=$tong_bg;$i++){?>
+        <Section class="ftco-section">
+            <div class="modal" id="modal<?php echo $i?>" style="padding-top: 100px;width: 100%; ">
+                <div class="modal-dialog modal-lg  w-100 "> 
+                    <div class="modal-content">
+                        <div class="modal-header"><strong>Phòng <?php echo $id_hang[$i] ?></strong></div>
+                        <div class="modal-body">
+                            <?php echo $description0[$i] ?>
+                            <p><strong>Địa điểm:</strong> <?php echo $diadiem[$i] ?> </p>
+                            <p><strong>Giá:</strong> <?php echo $price0[$i] ?> VND/ ngày </p>
+                            <img class="img-fluid " src="images/<?php echo $anhphong[$i]?>"  style="background-size: ; margin-top:20px;margin-bottom:20px; border-radius: 24px; ">
+                            
+                        </div>
+                        <div class="modal-footer">
+							<div class="book-button">
+								<a href="xacnhandatphong.php?id_phong=<?php echo $id_hang[$i] ?>&diadiem=<?php echo $diadiem[$i] ?>&price=<?php echo $price0[$i] ?>&loaiphong=Phòng đơn"><button class="btn btn-danger ">Đặt phòng</button></a>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </Section>
+    <?php }?>
+	<div class="containerb">
 		<h2 id="phongdoi">Danh sách phòng đôi</h2>
 	</div>
-	<div class="container">
+	<div class="containerb">
 		 <?php
 			  for ($i = 1; $i <= $tong_bgbd ; $i++)
 			  {
@@ -340,10 +382,10 @@ if (!isset($_SESSION['userclient'])) {
         <div class="room"  >
            <img src="images/<?php echo $anhphongbd[$i]?>" style="height: 200px;" alt="Anh phong" >
             <div class="room-description">
-                 <h2>Mô tả phòng <?php echo $i ?></h2>
-									
-					<p ><?php echo substr($description0bd[$i], 0, 200) . '...'; ?></p><!--Hiênr thị 200 chữ đầu tiên-->
-						<a href="chitietphong.php?id_phong=<?php echo $id_hangbd[$i]; ?>" >Đọc thêm</a>
+                 <h2>Phòng số: <?php echo $i ?></h2>
+				 <p id="short-description-<?php echo $i; ?>"><?php echo substr($description0giadinh[$i], 0, 200) . '...'; ?></p><!--Hiênr thị 200 chữ đầu tiên-->
+
+					
 					<p><?php echo $price0bd[$i] ?></p>
 					<p><strong><?php echo $diadiembd[$i] ?></strong></p>
 					<?php
@@ -359,7 +401,9 @@ if (!isset($_SESSION['userclient'])) {
 							if ($tinhtrangbd[$i] == "Đã đặt") {
 								echo '<button onclick="alert(\'Phòng này đã được đặt. Vui lòng chọn phòng khác.\')">Đặt phòng</button>';
 							} else {
-								echo '<a href="chitietphong.php?id_phong=' . $id_hangbd[$i] . '"><button>Đặt phòng</button></a>';
+								?> 
+								<button data-bs-toggle="modal" data-bs-target="#modal1<?php echo $i?>">Đặt phòng</button>
+								<?php
 							}
 							?>
 						</div>
@@ -368,12 +412,35 @@ if (!isset($_SESSION['userclient'])) {
 				  }
 				  ?>
 		</div>
+		<?php for($i=1;$i<=$tong_bgbd;$i++){?>
+        <Section class="ftco-section">
+            <div class="modal" id="modal1<?php echo $i?>" style="padding-top: 100px;width: 100%; ">
+                <div class="modal-dialog modal-lg  w-100 "> 
+                    <div class="modal-content">
+                        <div class="modal-header"><strong>Phòng <?php echo $id_hangbd[$i] ?></strong></div>
+                        <div class="modal-body">
+                            <?php echo $description0bd[$i] ?>
+                            <p><strong>Địa điểm:</strong> <?php echo $diadiembd[$i] ?> </p>
+                            <p><strong>Giá:</strong> <?php echo $price0bd[$i] ?> VND/ ngày </p>
+                            <img class="img-fluid " src="images/<?php echo $anhphongbd[$i]?>"  style="background-size: ; margin-top:20px;margin-bottom:20px; border-radius: 24px; ">
+                            
+                        </div>
+                        <div class="modal-footer">
+							<div class="book-button">
+								<a href="xacnhandatphong.php?id_phong=<?php echo $id_hangbd[$i] ?>&diadiem=<?php echo $diadiembd[$i] ?>&price=<?php echo $price0bd[$i] ?>&loaiphong=Phòng đôi"><button class="btn btn-danger ">Đặt phòng</button></a>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </Section>
+    <?php }?>
 	
 	
-	<div class="container">
+	<div class="containerb">
 		<h2 id="phonggiadinh">Danh sách phòng gia đình</h2>
 	</div>
-	<div class="container">
+	<div class="containerb">
 		 <?php
 			  for ($i = 1; $i <= $tong_bggiadinh ; $i++)
 			  {
@@ -382,9 +449,8 @@ if (!isset($_SESSION['userclient'])) {
         <div class="room"  >
            <img src="images/<?php echo $anhphonggiadinh[$i]?>" style="height: 200px;" alt="Anh phong" >
             <div class="room-description">
-                 <h2>Mô tả phòng <?php echo $i ?></h2>
-					 <p id="short-description-<?php echo $i; ?>"><?php echo substr($description0giadinh[$i], 0, 200) . '...'; ?></p><!--Hiênr thị 200 chữ đầu tiên-->
-						<a href="chitietphong.php?id_phong=<?php echo $id_hanggiadinh[$i]; ?>" >Đọc thêm</a>
+                 <h2>Phòng số: <?php echo $i ?></h2>
+				 <p id="short-description-<?php echo $i; ?>"><?php echo substr($description0giadinh[$i], 0, 200) . '...'; ?></p><!--Hiênr thị 200 chữ đầu tiên-->
 					<p><?php echo $price0giadinh[$i] ?></p>
 					<p><strong><?php echo $diadiemgiadinh[$i] ?></strong></p>
 					<?php
@@ -400,7 +466,9 @@ if (!isset($_SESSION['userclient'])) {
 							if ($tinhtranggiadinh[$i] == "Đã đặt") {
 								echo '<button onclick="alert(\'Phòng này đã được đặt. Vui lòng chọn phòng khác.\')">Đặt phòng</button>';
 							} else {
-								echo '<a href="chitietphong.php?id_phong=' . $id_hanggiadinh[$i] . '"><button>Đặt phòng</button></a>';
+								?> 
+								<button data-bs-toggle="modal" data-bs-target="#modal2<?php echo $i?>">Đặt phòng</button>
+								<?php
 							}
 							?>
 						</div>
@@ -409,13 +477,36 @@ if (!isset($_SESSION['userclient'])) {
 				  }
 				  ?>
 		</div>
+		<?php for($i=1;$i<=$tong_bggiadinh;$i++){?>
+        <Section class="ftco-section">
+            <div class="modal" id="modal2<?php echo $i?>" style="padding-top: 100px;width: 100%; ">
+                <div class="modal-dialog modal-lg  w-100 "> 
+                    <div class="modal-content">
+                        <div class="modal-header"><strong>Phòng <?php echo $id_hanggiadinh[$i] ?></strong></div>
+                        <div class="modal-body">
+                            <?php echo $description0giadinh[$i] ?>
+                            <p><strong>Địa điểm:</strong> <?php echo $diadiemgiadinh[$i] ?> </p>
+                            <p><strong>Giá:</strong> <?php echo $price0giadinh[$i] ?> VND/ ngày </p>
+                            <img class="img-fluid " src="images/<?php echo $anhphonggiadinh[$i]?>"  style="background-size: ; margin-top:20px;margin-bottom:20px; border-radius: 24px; ">
+                            
+                        </div>
+                        <div class="modal-footer">
+							<div class="book-button">
+								<a href="xacnhandatphong.php?id_phong=<?php echo $id_hanggiadinh[$i] ?>&diadiem=<?php echo $diadiemgiadinh[$i] ?>&price=<?php echo $price0giadinh[$i] ?>&loaiphong=Phòng gia đình"><button class="btn btn-danger ">Đặt phòng</button></a>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </Section>
+    <?php }?>
 	
 	
-	<div class="container">
+	<div class="containerb">
 		<h2 id="phongsuite">Danh sách phòng Suite</h2>
 	</div>
 
-	<div class="container">
+	<div class="containerb">
 		 <?php
 			  for ($i = 1; $i <= $tong_bgsuite ; $i++)
 			  {
@@ -441,8 +532,9 @@ if (!isset($_SESSION['userclient'])) {
 							<?php
 							if ($tinhtrangsuite[$i] == "Đã đặt") {
 								echo '<button onclick="alert(\'Phòng này đã được đặt. Vui lòng chọn phòng khác.\')">Đặt phòng</button>';
-							} else {
-								echo '<a href="chitietphong.php?id_phong=' . $id_hangsuite[$i] . '"><button>Đặt phòng</button></a>';
+							} else { ?> 
+								<button data-bs-toggle="modal" data-bs-target="#modal3<?php echo $i?>">Đặt phòng</button>
+								<?php
 							}
 							?>
 						</div>
@@ -451,6 +543,31 @@ if (!isset($_SESSION['userclient'])) {
 				  }
 				  ?>
 		</div>
+
+
+		<?php for($i=1;$i<=$tong_bgsuite;$i++){?>
+        <Section class="ftco-section">
+            <div class="modal" id="modal3<?php echo $i?>" style="padding-top: 100px;width: 100%; ">
+                <div class="modal-dialog modal-lg  w-100 "> 
+                    <div class="modal-content">
+                        <div class="modal-header"><strong>Phòng <?php echo $id_hangsuite[$i] ?></strong></div>
+                        <div class="modal-body">
+                            <?php echo $description0suite[$i] ?>
+                            <p><strong>Địa điểm:</strong> <?php echo $diadiemsuite[$i] ?> </p>
+                            <p><strong>Giá:</strong> <?php echo $price0suite[$i] ?> VND/ ngày </p>
+                            <img class="img-fluid " src="images/<?php echo $anhphongsuite[$i]?>"  style="background-size: ; margin-top:20px;margin-bottom:20px; border-radius: 24px; ">
+                            
+                        </div>
+                        <div class="modal-footer">
+							<div class="book-button">
+								<a href="xacnhandatphong.php?id_phong=<?php echo $id_hangsuite[$i] ?>&diadiem=<?php echo $diadiemsuite[$i] ?>&price=<?php echo $price0suite[$i] ?>&loaiphong=Phòng Suite"><button class="btn btn-danger ">Đặt phòng</button></a>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </Section>
+    <?php }?>
 
      <?php include './footer.php'?>  
 </body>

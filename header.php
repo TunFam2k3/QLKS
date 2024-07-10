@@ -10,7 +10,35 @@ session_start();
     <meta charset="UTF-8">
     <title>Trang chủ</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  
     <style>
+
+
+            /* CSS cho slider */
+
+
         body {
             margin: 0;
             padding: 0;
@@ -26,6 +54,7 @@ session_start();
 			width: 100vw;
 			display: flex;
 			flex-direction: column;
+            
 		}
 	
         .child1 {
@@ -90,44 +119,92 @@ session_start();
 			margin: 10px 10px 10px 0;
 		}
 
-       
+
     </style>
 </head>
+<?php
+$current_page = basename($_SERVER['PHP_SELF']); // Lấy tên của trang hiện tại
+
+function isActive($pageName) {
+    global $current_page;
+    if ($current_page == $pageName) {
+        echo 'active';
+    }
+}
+?>
 <body>
     <div class="wrapper">
         <div class="header">
-            <div class="child1">
-                <div class="child11"><img src="pic/logodaidien.png" alt=""></div>
-                <div class="child11" style="width: 50%;">
-                   <?php
-                        if(isset($_SESSION['userclient'])) {
-							    ?>
-						<marquee behavior="scroll" direction="right" scrollamount="10" style="font-size: 24px; "><?php echo "Welcome " . $_SESSION['userclient'] . "!<br>";?></marquee>
-					<?php
-						}?>
-				
-               </div>
-                <div class="child11" style="display: flex;">
-                    <?php
-                    if(isset($_SESSION['userclient'])) {
-						echo '<a href="dienthongtinnguoidung.php"><img src="pic/nendangnhap.jpg" class="anhdaidien" style="width: 50px; height: 50px; border-radius: 50%;border: 3px solid rgba(233,138,54,1.00);" alt=""></a>';
-                        echo '<a href="dangxuat_controller.php"><button><i class="fa-solid fa-right-from-bracket" style="color: #fff;"></i>Đăng xuất</button></a>';
-                    } else {
-                        echo '<a href="dangnhapclient.php"><button><i class="fa-regular fa-user" style="color: #fff;"></i>Đăng nhập</button></a>';
-                        echo '<a href="dangky.php"><button><i class="fa-solid fa-right-to-bracket" style="color: #f5f5f5;"></i>Đăng ký</button></a>';
-                    }
-                    ?>
-                </div>
-            </div>
-            <div class="child2">
-                <div class="menu">
-                    <a href="index.php"><i class="fa-solid fa-house" style="color: #000000;"></i>Home</a>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="index.php">Novoland</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu
+                    </button>
+            
+                    <div class="collapse navbar-collapse" id="ftco-nav">
+                        <ul class="navbar-nav ml-auto">
+                        <li class="nav-item <?php isActive('index.php'); ?>" ><a href="index.php" class="nav-link">Home</a></li>
+                        <li class="nav-item <?php isActive('gioithieu.php'); ?>"><a href="gioithieu.php" class="nav-link">Giới thiệu</a></li>
+                        <li class="nav-item <?php isActive('dichvu.php'); ?>"><a href="dichvu.php" class="nav-link">Dịch vụ</a></li>
+                        <li class="nav-item <?php isActive('danhsachphongks.php'); ?>">
+                            <a class="nav-link" href="javascript:void(0);" onclick="checkLoginAndRedirect()">Đặt phòng</a>
+                        </li>
+                        <li class="nav-item <?php isActive('lienhe.php'); ?>"><a href="lienhe.php" class="nav-link">Liên hệ</a></li>
+                        <li style="padding-left:80px">
+                            <?php
+                            if(isset($_SESSION['userclient'])) {
+                                echo '<a href="dienthongtinnguoidung.php"><img src="pic/nendangnhap.jpg" class="anhdaidien" style="width: 50px; height: 50px; border-radius: 50%;border: 3px solid rgba(233,138,54,1.00);" alt=""></a>';
+                                echo '<li class="nav-item cta"><a href="dangxuat_controller.php" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Đăng xuất</span></a></li>';
+
+                            } else {
+                                echo '<li class="nav-item cta"><a href="dangnhapclient.php" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Đăng nhập</span></a></li>';
+                                echo '<li class="nav-item cta"><a href="dangky.php" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Đăng ký</span></a></li>';
+                            
+                            }
+                            ?>
+                        </li>
                     
-                    <a href="danhsachphongks.php"><i class="fa-solid fa-bed" style="color: #000000;"></i>Đặt phòng</a>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </nav>        
+	    </div>
     </div>
 </body>
+<script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+
+
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+
+
+  <script src="js/scrollax.min.js"></script>
+
+  <script src="js/main.js"></script>
+  <script>
+    function checkLoginAndRedirect() {
+        <?php
+        if(!isset($_SESSION['userclient'])) {
+        ?>
+            alert("Vui lòng đăng nhập để đặt phòng");
+            window.location.href = "dangnhapclient.php";
+        <?php
+        }
+        else {
+            ?>
+                window.location.href = "danhsachphongks.php";
+            <?php
+            }
+        ?>
+    }
+</script>
 </html>
 

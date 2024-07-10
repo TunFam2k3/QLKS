@@ -3,7 +3,7 @@ session_name('client');
 session_start();
 $servername = "localhost";
 $username = "root";
-$password = "Tunfam8303@";
+$password = "";
 $dbname = "anh"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);

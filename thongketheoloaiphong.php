@@ -83,6 +83,8 @@
         <label for="ngayketthuc">Đến ngày:</label>
         <input type="date" name="ngayketthuc" required>
         <button class="thongke"type="submit">Thống kê</button>
+		<div id="myfirstchart" style="height: 250px;"></div>
+
     </form>
 
     <?php
@@ -140,6 +142,31 @@
 </body>
 	
   
+
+<!-- biểu đồ -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script>
+   var char = new Morris.Area({
+  element: 'myfirstchart', 
+ data: [
+    { month: '2023-1', Total:  0},
+    { month: '2023-2', Total:  0},
+    { month: '2023-3', Total: 0 },
+    { month: '2023-4', Total: 0 },
+    { month: '2023-5', Total: 0 },
+    { month: '2023-6', Total: 0 },
+    { month: '2023-7', Total: 0 },
+    { month: '2023-8', Total: 250000 },
+    { month: '2023-9', Total: 350000 },
+    { month: '2023-10', Total: 300000 } 
+  ], 
+  xkey: 'month',
+  ykeys: ['Total'],
+  labels: ['Tổng tiền']
+});
+</script>
 
 
 

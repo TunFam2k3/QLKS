@@ -3,198 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="styles.css">
+	
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-	<style>
-		
-		body{
-			margin: 0;
-			padding: 0;
-			font-family:Arial, "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
-			box-sizing: border-box;
-			background-color: #f0f0f0
-		}
-		
-		.content1{
-			padding-top: 127px;
-			display: flex;
-			width: 100%;
-			margin: 0 auto;
-            min-height: calc(300px - 100px);
-            
-		}
-		.child1_content {
-			width: 100%;
-			height: 300px;
-			display: flex;
-			background-color: linear-gradient(90deg, rgba(2,0,36,1), rgba(241,242,245,1) , rgba(0,212,255,1));
-			justify-content: center;
-    		align-items: center;
-		}
-		.child1_content img{
-			width: 80%;
-			margin-left:50%;
-			transform: translateX(-50%);
-			height: 300px;
-		}
-		.content2{
-			background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-			padding: 8px;
-			display: flex;
-			width: 80%;
-			margin: 0 auto;
-		}
-		.content21{
-			
-			margin-top: 52px;
-			width: 100%;
-		}
-		.button-container{
-			height: 48px;
-			
-		}
-		.button-container button{
-			border-radius: 16px;
-			padding: 8px;
-			border: 1px;
-			font-weight: 700;
-			background-color:#C8CCCE; 
-			background-color:#00aaff; 
-			
-		}
-		.button-container button:hover{
-			cursor: pointer;
-			opacity: 0.7;
-		}
-		.image-container img{
-			
-			height: 200px;
-			margin-right: 8px;
-			border-radius: 6px;
-		}
-		.content21 a>img{
-			width: 100%;
-			height: 150px;
-			
-			border-radius: 6px;
-		}
-		h2>strong{
-			display: inline;
-			max-width: 100%;
-		}
-		.image-description{
-			margin-top: 50px;
-			display: flex;
-		}
-		.image a>img{
-			height: 200px;
-			width: 600px;
-			z-index: -1;
-		}
-		
-		.description button{
-			padding: 8px;
-			margin-right: 12px;
-			border-radius: 8px;
-			border: 1px solid ;
-			background-color: #FF0000;
-			font-weight: 700;
-			color: rgba(255,255,255,1.00);
-		}.description button:hover{
-			cursor: pointer;
-			opacity: 0.7;
-		}
-		.khoi button{
-			padding: 8px;
-			margin-right: 12px;
-			border-radius: 8px;
-			border: 1px solid ;
-			background-color: #FF0000;
-			font-weight: 700;
-			color: rgba(255,255,255,1.00);
-		}.khoi button:hover{
-			cursor: pointer;
-			opacity: 0.7;
-		}
-		.khoi img{
-			
-			width: calc(90%);
-		}
-		
-		.slide{
-			height: 300px;
-		}
-		.carousel-item{
-			height: 300px;
-			background-size: contain;
-		}
-		.container-fluid{
-			margin: 0;
-			padding: 0;
-			z-index: -2;
-		}
-		
-		.khoi:hover{
-			transform: scale(1.01);
-			cursor: pointer;
-			
-			border-radius: 8px;
-		
-		}
-		
-		.descriptioncon{
-			overflow: scroll;
-		}
-		.content2 {
-			background-color: #fff;
-			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-			padding: 8px;
-			display: flex;
-			justify-content: space-between;
-			margin: 0 auto;
-		}
-
-		.box {
-			width: 30%; 
-			padding: 10px;
-			box-sizing: border-box;
-			text-align: center;
-			margin-top: 20px;
-			margin-bottom: 20px;
-		}
-
-		.box img {
-			width: 100%;
-			max-width: 100px;
-			height: auto;
-		}
-
-		.top {
-			margin-top: 20px;
-		}
-
-		.box strong {
-			font-weight: bold;
-		}
-
-		.box p {
-			font-size: 14px;
-			margin-top: 10px;
-		}
-		.cacbox{
-			display: flex;
-		}
-		
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 	
 	<?php	
@@ -219,14 +35,9 @@
 		}
 	$tong_bg = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `anhhh`"));
 	mysqli_close($conn);
-	
-	
-	
-		
-	
 	?>
 <body>
-	<div class="container-fluid " style="display:flex;padding-top:100px;">
+	<div class="container-fluid " style="display:flex;padding-top:80px;">
 		
 		<div id="demo" class="carousel slide" data-bs-ride="carousel">
 
@@ -240,75 +51,74 @@
             <!-- The slideshow/carousel -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA11N9kp.img"
-                        alt="Los Angeles" class="d-block w-100">
+                    <img src="img/img3.jpg"
+                        alt="slide 1" class="d-block w-100">	
                 </div>
-                <div class="carousel-item active">
-                    <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA11N9kp.img"
-                        alt="Chicago" class="d-block w-100">
+                <div class="carousel-item ">
+				<img src="img/img2.jpg"
+                        alt="slide 2" class="d-block w-100">
                 </div>
-                <div class="carousel-item active">
-                    <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA11N9kp.img"
-                        alt="New York" class="d-block w-100">
+                <div class="carousel-item ">
+                    <img src="img/img1.jpg"
+                        alt="slide 3" class="d-block w-100">
                 </div>
             </div>
 
             <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" style="margin-top:150px;"  type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <button class="carousel-control-prev" style="margin-top:100px;"  type="button" data-bs-target="#demo" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </button>
-            <button class="carousel-control-next" style="margin-top:150px;" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <button class="carousel-control-next" style="margin-top:100px;" type="button" data-bs-target="#demo" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </button>
         </div>
 	</div>
 	<div class="container-fluid">
-	
-		
-		
-	
-		<div class="content2"style="margin-bottom: 30px; margin-top: 20px;">
-		<div class="content21 container">
-		        <h2><strong>Vì sao lại chọn CHTravel </strong></h2>
-				<div class="cacbox">
-					<div class="box top">
-				<img src="HinhAnh/Icon1.png" alt="Image 1">
-				<br>
-				<strong>Mạng bán tour</strong>
-				<p>Ứng dụng công nghệ mới nhất</p>
-			</div>
-			<div class="box top">
-				<img src="HinhAnh/Icon2.png" alt="Image 2">
-				<br>
-				<strong>Sản phẩm & Dịch vụ</strong>
-				<p>Đa dạng – Chất lượng – An toàn</p>
-			</div>
-			<div class="box top">
-				<img src="HinhAnh/Icon3.png" alt="Image 3">
-				<br>
-				<strong>Giá cả</strong>
-				<p>Luôn có mức giá tốt nhất</p>
-			</div>
-			<div class="box">
-				<img src="HinhAnh/Icon4.png" alt="Image 4">
-				<br>
-				<strong>Đặt tour</strong>
-				<p>Dễ dàng & nhanh chóng chỉ với 3 bước</p>
-			</div>
-			<div class="box">
-				<img src="HinhAnh/Icon5.png" alt="Image 5">
-				<br>
-				<strong>Thanh toán</strong>
-				<p>An toàn & linh hoạt</p>
-			</div>
-			<div class="box">
-				<img src="HinhAnh/Icon6.png" alt="Image 6">
-				<br>
-				<strong>Hỗ trợ</strong>
-				<p>Hotline & trực tuyến (08h00 - 22h00)</p>
-			</div>
-				</div>
 
+	
+		<div class="content2"style="margin-bottom: 30px; margin-top: 100px;">
+		<div class="content21 container">
+			<h2 align="center"><strong>Vì sao lại chọn khách sạn của chúng tôi </strong></h2>
+			<div class="cacbox">
+				<div class="box top">
+					<img src="img/img2.jpg" alt="Image 1">
+					<br>
+					<strong>KIẾN TRÚC THÚ VỊ THEO PHONG CÁCH HIỆN ĐẠI</strong>
+					<p>Với mặt tiền độc đáo gợi nhớ đến những con sóng của Biển Đông và phong cách nội thất phản chiếu vỏ sò của Bãi biển Mỹ Khê, Stella Maris Beach Đà Nẵng mang một đẳng cấp thiết kế khác biệt. Và kiến ​​trúc kiểu dáng đẹp và hiện đại được bổ sung bởi bảng màu thương hiệu sang trọng gồm đen, bạc và xanh lam trong toàn bộ khuôn viên.</p>
+				</div>
+				<div class="box top">
+					<img src="img/img4.jpg" alt="Image 2">
+					<br>
+					<strong>MÓN ẨM THỰC PHẨM Việt NAM VÀ QUỐC TẾ TUYỆT VỜI</strong>
+					<p>Các món ăn ngon của Việt Nam và quốc tế đang chờ đón bạn tại Le Paul's Kitchen, Café Maris, và quầy bar & sảnh khách trên tầng mái có một không hai của chúng tôi, Crystal Blu. Bạn cũng sẽ tìm thấy những món ăn đường phố địa phương ngon lành chỉ cách chúng tôi vài phút khi khám phá khu vực bãi biển Mỹ Khê xinh đẹp.</p>
+				</div>
+				<div class="box top">
+					<img src="img/img5.jpg" alt="Image 3">
+					<br>
+					<strong>BÃI BIỂN MỸ KHÊ NỔI TIẾNG THẾ GIỚI BÊN NGOÀI ĐƯỜNG!</strong>
+					<p>Stella Maris Beach Đà Nẵng cách bãi biển Mỹ Khê tuyệt đẹp 50m, được Forbes và New York Times bình chọn là một trong những bãi biển đẹp nhất thế giới. Bơi lội, thư giãn và tận hưởng vẻ đẹp mê hoặc của đại dương xanh như pha lê và bán đảo Sơn Trà.</p>
+				</div>
+			</div>
+			<div class="cacbox">
+				<div class="box top">
+					<img src="img/img6.jpg" alt="Image 1">
+					<br>
+					<strong>ĐỪNG BỎ LỠ HỒ BƠI TRÊN MÁI CỦA CHÚNG TÔI!</strong>
+					<p>Với cảnh hoàng hôn thơ mộng, đường chân trời vô tận và cảnh bình minh tuyệt đẹp nhất mà bạn từng thấy, hồ bơi trên sân thượng của chúng tôi—nằm cạnh Crystal Blu, sảnh khách trên sân thượng—có tầm nhìn bao quát 180 độ ra Bãi biển Mỹ Khê và Bán đảo Sơn Trà tuyệt đẹp. Hãy tụ tập cùng gia đình và bạn bè bên một ly cocktail sảng khoái, ngâm mình sảng khoái và ghi lại một số kỷ niệm.</p>
+				</div>
+				<div class="box top">
+					<img src="img/img1.jpg" alt="Image 2">
+					<br>
+					<strong>HỌC TẬP LÀ VUI VẺ TẠI STELLA MARIS!</strong>
+					<p>Chúng tôi yêu trẻ em tại Stella Maris và Little Stars là một chuyến phiêu lưu học tập kéo dài một giờ, trong đó con bạn sẽ trải nghiệm văn hóa Việt Nam trong sự kết hợp hoàn hảo giữa học tập, tập thể dục và niềm vui phiêu lưu. Được dẫn dắt bởi giáo viên tiếng Anh Việt yêu trẻ. Kính mời quý phụ huynh tham gia!</p>
+				</div>
+				<div class="box top">
+					<img src="img/img3.jpg" alt="Image 3">
+					<br>
+					<strong>BẠN xứng đáng được TRẺ HÓA - SỰ ĐẶC BIỆT CỦA CHÚNG TÔI</strong>
+					<p>Bạn xứng đáng được nghỉ ngơi, sảng khoái và trẻ hóa tại... Rejuvena—trung tâm chăm sóc sức khỏe và spa Stella Maris Beach Đà Nẵng. Tại đây bạn sẽ được trải nghiệm thư giãn và chữa lành, đây sẽ là một trong những điểm nổi bật trong trải nghiệm kỳ nghỉ ở bãi biển của bạn. Trở về nhà với một sức sống và năng lượng mới hơn bao giờ hết.</p>
+				</div>
+			</div>
 		</div>
 		
 	</div>
@@ -322,21 +132,19 @@
 			  {
 				 
 			?>
-        <div class="image-description" style="height: 300px; ">
-            <div class="image" >
-                <a href="">
-                    <img src="images/<?php echo $anhphong[$i]?>" alt="" style="height: 300px;">
-                </a>
-            </div>
-            <div class="description" style="margin-left: 40px; display: flex;flex-direction: column">
-				<div class="descriptioncon">
-				<h4><strong>Mô tả</strong></h4>
-                <p class="description-text"><?php echo $description0[$i] ?></p>
+        	<div class="image-description" style="height: 300px; ">
+				<div class="image" >
+					<a href="">
+						<img src="images/<?php echo $anhphong[$i]?>" alt="" style="height: 300px;">
+					</a>
+				</div>
+				<div class="description" style="margin-left: 40px; display: flex;flex-direction: column">
+					<div class="descriptioncon">
+					<h4><strong>Mô tả</strong></h4>
+					<p class="description-text"><?php echo $description0[$i] ?></p>
 				</div>
 				<a href="danhsachphongks.php" style="margin-top: 12px;"><button>Đặt phòng</button></a>
-
-            </div>
-	
+			</div>	
         </div>
 			 <?php  
 				  }
@@ -346,7 +154,7 @@
 		<br>
 
 	<div class="content">
-		<h2 align="center" ><strong>Đặt phòng ngay</strong></h2>
+		<h2 style="margin-left: 40%;" ><strong>Đặt phòng ngay</strong></h2>
 	</div>
 		<br>
 

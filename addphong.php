@@ -7,7 +7,6 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: url(https://th.bing.com/th/id/R.879c522d63acf0e33c3be4c33549937b?rik=7UdDaNUaVeLTVg&riu=http%3a%2f%2fwww.czxww.cn%2fmobile%2fpic%2f2022-09%2f13%2f1329091_3f8d51f0-8361-433f-a6ec-950103e267d8.jpg.2&ehk=Pes%2fid5U%2b7jLKMZhmk%2bpugqsR8dxDEeWmij6OqZVTr8%3d&risl=&pid=ImgRaw&r=0);
 		background-size: cover;
     }
     .container {
@@ -25,7 +24,7 @@
 	}
     h1 {
         text-align: center;
-        color: #FF5733;
+        /* color: #FF5733; */
     }
     table {
         width: 100%;
@@ -64,23 +63,41 @@
 
 <body>
     <div class="container">
+        <?php
+        $db="anh";
+        $conn=new mysqli("localhost","root","",$db) or die ("Không connect đc với máy chủ");
+        $query_loaiphong="SELECT * FROM `loai_phong`";
+				$result=$conn->query($query_loaiphong);
+				$stt_hang_loaiphong=0;
+				while($row = mysqli_fetch_object($result))// trả về kết quả theo dòng
+				{
+
+				$stt_hang_loaiphong++;
+				$id_loai_phong[$stt_hang_loaiphong]=$row->id;
+				$loaiphong[$stt_hang_loaiphong]=$row->loaiphong;
+				}
+					$tong_bg_loaiphong = mysqli_num_rows(mysqli_query($conn, $query_loaiphong));// trả về số lượng bản ghi
+        ?>
         <h1>Thêm Phòng</h1>
         <form action="add_phongcontroller.php" method="POST" enctype="multipart/form-data">
             <table>
 				<tr>
                     <td>Loại phòng</td>
                     <td>
-						<select name="loaiphong" id="">	
-							<option name="loaiphong" value="Phòng đơn">Phòng đơn</option>
-							<option name="loaiphong" value="Phòng đôi">Phòng đôi</option>
-							<option name="loaiphong" value="Phòng gia đình">Phòng gia đình</option>
-							<option name="loaiphong" value="Phòng Suite">Phòng Suite</option>
-						</select>
+                    <select name="loaiphong" id="">
+          <?php
+          for ( $i = 1; $i <= $tong_bg_loaiphong; $i++ ) {
+            ?>
+          <option value="<?php echo $loaiphong[$i]?>"><?php echo $loaiphong[$i]?></option>
+          <?php
+          }
+          ?>
+        </select>
 					</td>
                 </tr>
                 <tr>
                     <td>Giá</td>
-                    <td><input type="number" name="price" required></td>
+                    <td><input type="number" name="price" ></td>
                 </tr>
                 <tr>
                     <td>Mô tả</td>
@@ -88,7 +105,7 @@
                 </tr>
                 <tr>
                     <td>Ảnh</td>
-                    <td><input type="file"  name="anhphong" required></td>
+                    <td><input type="file"  name="anhphong" ></td>
                 </tr>
 				<tr>
                     <td>Tình trạng</td>
@@ -98,8 +115,7 @@
 				
 				
 				<?php 
-				$db="anh";
-				$conn=new mysqli("localhost","root","",$db) or die ("Không connect đc với máy chủ");
+				
 				$query="SELECT * FROM tinhthanh";
 				$result=$conn->query($query);
 				$stt_hang=0;
@@ -125,7 +141,25 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Xác nhận"></td>
+                                   
+      <script type="text/javascript">
+
+function testConfirmDialog()  {
+
+     var result = confirm("Bạn có chắc muốn thêm phòng ?");
+
+     if(result)  {
+        alert("Thêm phòng thành công");
+        return true;
+     } else {
+        return false;
+     }
+}
+
+</script>
+                    <td Align="center" ><button onclick ="testConfirmDialog()"value="Xác nhận"> Xác nhận</button></td>
+                    <td>        <button><a href=""></a>Hủy</button>
+</td>
                 </tr>
             </table>
         </form>
